@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>喵喵成长手册</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="stage" aria-label="喵喵成长手册开场页">
+      <section class="title-wrap" aria-label="喵喵成长手册标题">
+        <img class="title-img" src="./assets/title-stars.png" alt="喵喵成长手册" />
+      </section>
+
+      <nav class="record-menu home-menu" aria-label="首页功能">
+        <button class="menu-button" type="button" aria-label="拍照" data-action="camera">
+          <img src="./assets/photo-button.png" alt="拍照" />
+        </button>
+        <button class="menu-button" type="button" aria-label="图像" data-action="upload">
+          <img src="./assets/image-button.png" alt="图像" />
+        </button>
+        <a class="menu-button" href="./records.html" aria-label="进入记录页面">
+          <img src="./assets/record-button.png" alt="记录" />
+        </a>
+      </nav>
+
+      <input class="image-input" type="file" accept="image/*" aria-label="选择图片" />
+
+      <section class="capture-panel" aria-live="polite" hidden>
+        <button class="panel-close" type="button" aria-label="关闭">×</button>
+        <video class="camera-view" autoplay playsinline muted hidden></video>
+        <canvas class="photo-canvas" hidden></canvas>
+        <img class="preview-image" alt="图片预览" hidden />
+        <p class="panel-message" hidden></p>
+        <textarea class="note-input" placeholder="写一点喵喵今天的记录..." hidden></textarea>
+        <p class="save-status" hidden></p>
+        <div class="panel-actions">
+          <button class="capture-button" type="button" hidden>拍下</button>
+          <button class="save-button image-save-button" type="button" aria-label="保存" hidden>
+            <img src="./assets/save-button.png" alt="保存" />
+          </button>
+        </div>
+      </section>
+
+      <button class="share-open-button" type="button" aria-label="打开共享" data-action="openShare">
+        <img src="./assets/share-button.png" alt="共享" />
+      </button>
+
+      <section class="share-panel" aria-label="共享手册" hidden>
+        <button class="panel-close share-close" type="button" aria-label="关闭">×</button>
+        <div class="share-block">
+          <span class="share-label">我的共享码</span>
+          <strong class="invite-code" aria-live="polite"></strong>
+          <div class="invite-actions">
+            <button class="invite-button" type="button" data-action="copyInvite">复制</button>
+          </div>
+        </div>
+        <form class="join-share-form">
+          <label class="share-label" for="joinCode">输入共享码</label>
+          <input class="share-input" id="joinCode" name="joinCode" type="text" placeholder="MIAO-XXXXXX" autocomplete="off" />
+          <button class="invite-button" type="submit">加入</button>
+        </form>
+        <p class="invite-status" aria-live="polite"></p>
+      </section>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>
