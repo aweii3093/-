@@ -1,0 +1,489 @@
+:root {
+  --bg: #ffffff;
+  --blue: #006dff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: auto;
+  background: var(--bg);
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+}
+
+.stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 560px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.records-stage {
+  height: auto;
+  min-height: 100vh;
+  padding: 42px 0 130px;
+  overflow: visible;
+}
+
+.title-wrap {
+  position: absolute;
+  top: clamp(16px, 4vh, 36px);
+  left: 50%;
+  z-index: 4;
+  width: min(33vw, 360px);
+  aspect-ratio: 761 / 532;
+  transform: translateX(-50%);
+  animation: titleFloat 4.8s ease-in-out infinite;
+  filter: drop-shadow(0 8px 0 rgba(0, 0, 0, 0.14));
+}
+
+.title-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+  image-rendering: auto;
+}
+
+.record-menu {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(14px, 3vh, 26px);
+  width: min(18vw, 156px);
+  transform: translate(-50%, -50%);
+}
+
+.menu-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  line-height: 0;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    filter 180ms ease;
+}
+
+.menu-button:hover {
+  transform: scale(1.04);
+  filter: drop-shadow(0 8px 0 rgba(0, 0, 0, 0.12));
+}
+
+.menu-button:active {
+  transform: scale(0.98);
+}
+
+.menu-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+.share-open-button {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  z-index: 6;
+  width: min(15vw, 132px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  line-height: 0;
+  transform: translateX(-50%);
+  transition:
+    transform 180ms ease,
+    filter 180ms ease;
+}
+
+.share-open-button:hover {
+  transform: translateX(-50%) scale(1.04);
+  filter: drop-shadow(0 8px 0 rgba(0, 0, 0, 0.12));
+}
+
+.share-open-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.image-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.capture-panel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 10;
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+  width: min(76vw, 520px);
+  padding: 22px;
+  border: 2px solid var(--blue);
+  background: #ffffff;
+  transform: translate(-50%, -50%);
+}
+
+.share-panel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 12;
+  display: grid;
+  gap: 18px;
+  width: min(78vw, 420px);
+  padding: 28px 22px 22px;
+  border: 2px solid var(--blue);
+  background: #ffffff;
+  color: var(--blue);
+  transform: translate(-50%, -50%);
+}
+
+.share-block,
+.join-share-form {
+  display: grid;
+  gap: 10px;
+}
+
+.share-label {
+  color: var(--blue);
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.invite-code {
+  color: var(--blue);
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+.invite-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.invite-button {
+  padding: 7px 10px;
+  border: 2px solid var(--blue);
+  background: #ffffff;
+  color: var(--blue);
+  cursor: pointer;
+  font: 14px/1 Arial, "Microsoft YaHei", sans-serif;
+}
+
+.share-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--blue);
+  color: var(--blue);
+  font: 16px/1.2 Arial, "Microsoft YaHei", sans-serif;
+}
+
+.invite-status {
+  min-height: 18px;
+  margin: 0;
+  color: var(--blue);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.camera-view,
+.preview-image,
+.photo-canvas {
+  display: block;
+  width: 100%;
+  max-height: 56vh;
+  object-fit: contain;
+  background: #f2f2f2;
+}
+
+.panel-message {
+  width: 100%;
+  margin: 0;
+  padding: 28px 18px;
+  border: 2px solid var(--blue);
+  color: var(--blue);
+  font-size: 16px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.panel-close {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  color: var(--blue);
+  cursor: pointer;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.capture-button {
+  min-width: 86px;
+  padding: 8px 18px;
+  border: 2px solid var(--blue);
+  background: #ffffff;
+  color: var(--blue);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.note-input {
+  width: 100%;
+  min-height: 86px;
+  padding: 12px;
+  border: 2px solid var(--blue);
+  color: var(--blue);
+  font: 16px/1.5 Arial, "Microsoft YaHei", sans-serif;
+  resize: vertical;
+}
+
+.panel-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.save-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.save-button:disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+.image-save-button {
+  width: min(22vw, 120px);
+  line-height: 0;
+}
+
+.image-save-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.save-status {
+  margin: 0;
+  color: var(--blue);
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.cards-area {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 280px));
+  gap: 24px;
+  justify-content: center;
+  width: min(88vw, 980px);
+  margin: 0 auto;
+}
+
+.active-share-label {
+  width: min(88vw, 980px);
+  margin: 0 auto 18px;
+  color: var(--blue);
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.record-card,
+.empty-card {
+  border: 2px solid var(--blue);
+  background: #ffffff;
+  padding: 14px;
+}
+
+.record-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #f2f2f2;
+}
+
+.record-note {
+  min-height: 44px;
+  margin: 12px 0 0;
+  color: var(--blue);
+  font-size: 16px;
+  line-height: 1.55;
+  word-break: break-word;
+}
+
+.record-date,
+.empty-card {
+  color: #9a9a9a;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 12px;
+}
+
+.like-button,
+.comment-submit {
+  border: 2px solid var(--blue);
+  background: #ffffff;
+  color: var(--blue);
+  cursor: pointer;
+  font: 14px/1.2 Arial, "Microsoft YaHei", sans-serif;
+}
+
+.like-button {
+  padding: 6px 10px;
+}
+
+.comments-list {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.comment-item {
+  margin: 0;
+  padding: 6px 8px;
+  border-left: 2px solid var(--blue);
+  color: var(--blue);
+  font-size: 14px;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.comment-form {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.comment-input {
+  min-width: 0;
+  flex: 1;
+  padding: 7px 8px;
+  border: 2px solid var(--blue);
+  color: var(--blue);
+  font: 14px/1.2 Arial, "Microsoft YaHei", sans-serif;
+}
+
+.comment-submit {
+  flex: 0 0 auto;
+  padding: 0 10px;
+}
+
+.bottom-back {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  width: min(13vw, 112px);
+  transform: translateX(-50%);
+}
+
+.bottom-back:hover {
+  transform: translateX(-50%) scale(1.04);
+}
+
+.bottom-back:active {
+  transform: translateX(-50%) scale(0.98);
+}
+
+@keyframes titleFloat {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0) rotate(-0.2deg);
+  }
+  50% {
+    transform: translateX(-50%) translateY(7px) rotate(0.25deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .stage {
+    min-height: 520px;
+  }
+
+  .title-wrap {
+    top: 24px;
+    width: min(58vw, 300px);
+  }
+
+  .record-menu {
+    top: 60%;
+    width: min(34vw, 130px);
+    gap: 14px;
+  }
+
+  .share-open-button {
+    width: min(30vw, 112px);
+    bottom: 18px;
+  }
+
+  .share-panel {
+    width: min(88vw, 360px);
+  }
+
+  .capture-panel {
+    width: min(88vw, 420px);
+    padding: 18px;
+  }
+
+  .image-save-button {
+    width: min(30vw, 108px);
+  }
+
+  .cards-area {
+    grid-template-columns: minmax(0, 78vw);
+  }
+
+  .bottom-back {
+    width: min(26vw, 96px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title-wrap {
+    animation: none;
+  }
+}
